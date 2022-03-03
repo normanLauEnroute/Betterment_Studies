@@ -3,9 +3,14 @@
 <%= gravatar_for @user, size: 200 %>
 <h1><%= @user.username %></h1>
 
-<div><%= link_to "Edit your profile", edit_user_path(@user) %></div>
+
+<% if logged_in? && @user == current_user %>
+  <div>
+    <%= link_to "Edit your profile", edit_user_path(@user) %>
+    <%= button_to "Delete your profile", user_path(current_user), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+<% end %>
 
 <h3>Articles</h3>
 
 <%= render 'articles/article' %>
-
