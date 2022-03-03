@@ -13,8 +13,9 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "./pagination.scss";
 
- .navbar{
+.navbar{
     background-color: rgb(73, 73, 73);
     border-radius: 0;
 }
