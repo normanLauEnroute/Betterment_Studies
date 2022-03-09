@@ -1,0 +1,22 @@
+<% if @category.errors.any? %>
+    <div class="alert">
+        <h4 class="alert-heading">The following errors prevented this user from sign up</h4>
+        <ul>
+            <% @category.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_with(model: @category) do |f| %>
+    <p>
+        <%= f.label :name, "Category name" %> <br />
+        <%= f.text_field :name, placeholder: "Enter a name" %>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+
+<% end %>

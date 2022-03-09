@@ -1,0 +1,12 @@
+<h1>Category: <%= @category.name %>'s profile</h1>
+
+<% if logged_in? && current_user.admin? %>
+  <div>
+    <%= link_to "Edit category name", edit_category_path(@category) %>
+    <%= button_to "Delete category", category_path(@category), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+<% end %> 
+
+<h3>Articles</h3>
+
+<%= render 'articles/article' %>

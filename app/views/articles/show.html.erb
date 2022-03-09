@@ -6,9 +6,14 @@
   <strong>By: </strong><%= @article.user.username %>
   <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
 </p>
+<p>
+  <% if @article.categories.any? %>
+    <%= render @article.categories %>
+  <% end %>
+</p>
 
 <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Edit', edit_article_path(@article) %>
   <%= button_to 'Delete', article_path(@article), method: :delete %>
 <% end %>
 <%= link_to 'Return to articles listing', articles_path %>
