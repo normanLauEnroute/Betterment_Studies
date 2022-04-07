@@ -19,4 +19,17 @@ class Stock < ApplicationRecord
   def self.check_db(ticker_symbol)
     where(ticker: ticker_symbol).first
   end
+
+  def get_price
+    client = IEX::Api::Client.new(
+      publishable_token: Rails.application.credentials.iex_client[:sandbox_api_key],
+      endpoint: 'https://sandbox.iexapis.com/v1'
+    )
+    begin
+      self.last_price = client.price(self.ticker)
+      self.save
+    rescue => exception
+      return nil
+    end
+  end
 end

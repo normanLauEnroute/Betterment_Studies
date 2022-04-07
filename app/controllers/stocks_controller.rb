@@ -20,4 +20,12 @@ class StocksController < ApplicationController
       end
     end
   end
+
+  def update
+    @user = current_user
+    @tracked_stocks = current_user.stocks
+    respond_to do |format|
+      format.js { render partial: 'stocks/list' }
+    end
+  end
 end
